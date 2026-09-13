@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Prakash Sinha — Backend &amp; AI Systems Engineer</title>
+    <meta name="description"
+        content="Portfolio of Harsh Prakash Sinha — backend, RAG systems, and agentic AI engineering.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #fcfbfa;
+            --panel: #f3f2ef;
+            --panel-2: #eae9e4;
+            --line: #e0deda;
+            --line-soft: #f0efeb;
+            --text: #1c1b1a;
+            --muted: #5e5c5a;
+            --muted-2: #8c8a88;
+            --signal: #d44a27;
+            --signal-dim: #fcece8;
+            --ok: #3a8c5c;
+            --radius: 0px;
+            --maxw: 1040px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--ink);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--signal-dim);
+            color: #111827;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+            letter-spacing: 0.01em;
+        }
+
+        .wrap {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* Background grid — the "blueprint" texture, quiet and structural */
+        .grid-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                linear-gradient(var(--line-soft) 1px, transparent 1px),
+                linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+            background-size: 56px 56px;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+            opacity: 0.6;
+            animation: panBg 30s linear infinite;
+        }
+
+        /* ---------- Header ---------- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+        }
+
+        .brand {
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .brand-mark {
+            width: 9px;
+            height: 9px;
+            background: var(--signal);
+            display: inline-block;
+        }
+
+        .navlinks {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navlinks a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 14px;
+            font-family: 'IBM Plex Mono', monospace;
+            transition: color .15s ease;
+        }
+
+        .navlinks a:hover {
+            color: var(--text);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--line);
+            color: var(--text);
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+        }
+
+        /* ---------- Hero (Unique Split) ---------- */
+        .hero {
+            padding: 140px 0 100px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            color: var(--signal);
+            margin: 0 0 24px;
+            border: 1px solid var(--signal);
+            padding: 6px 16px;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: clamp(34px, 6vw, 68px);
+            line-height: 1.05;
+            font-weight: 700;
+            margin: 0 0 32px;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .hero p.lead {
+            font-size: 18px;
+            color: var(--muted);
+            max-width: 50ch;
+            margin: 0 0 48px;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .btn {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 14px 24px;
+            border: 1px solid var(--line);
+            color: var(--text);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all .2s ease;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            border-color: var(--signal);
+            background: #ffffff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .btn.primary {
+            background: var(--signal);
+            border-color: var(--signal);
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .btn.primary:hover {
+            background: #b53c1e;
+            border-color: #b53c1e;
+            color: #ffffff;
+        }
+
+        .ascii-art {
+            background: var(--text);
+            color: var(--ok);
+            padding: 32px;
+            border-radius: 8px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            white-space: pre;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        .ascii-art span.dim {
+            color: var(--muted-2);
+        }
+
+        .ascii-art span.highlight {
+            color: #ffffff;
+        }
+
+        /* ---------- Section shell ---------- */
+        section {
+            padding: 100px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        /* ---------- About (Data Sheet Layout) ---------- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: auto auto 2fr 1.5fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .about-title {
+            font-size: 80px;
+            font-weight: 700;
+            color: var(--panel-2);
+            line-height: 0.8;
+            margin: 0;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
+        .profile-pic {
+            width: 100%;
+            max-width: 280px;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            filter: grayscale(0%);
+        }
+
+        .about-bio p {
+            color: var(--muted);
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0 0 24px;
+        }
+
+        .about-bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-edu {
+            border-left: 1px solid var(--line);
+            padding-left: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .edu-block {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .edu-block h4 {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .edu-block span {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--muted-2);
+        }
+
+        /* ---------- Experience (Sticky Scroll) ---------- */
+        .exp-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .exp-sticky {
+            position: sticky;
+            top: 120px;
+        }
+
+        .exp-sticky h2 {
+            font-size: 42px;
+            margin: 0 0 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .exp-sticky p {
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 30ch;
+        }
+
+        .exp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .exp-item {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .exp-period {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--signal);
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: inline-block;
+            border: 1px solid var(--signal);
+            padding: 4px 12px;
+            border-radius: 40px;
+            align-self: flex-start;
+        }
+
+        .exp-item h3 {
+            margin: 0 0 8px;
+            font-size: 28px;
+            letter-spacing: -0.01em;
+        }
+
+        .exp-item .company {
+            color: var(--muted);
+            font-size: 16px;
+            margin-bottom: 24px;
+            display: block;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .exp-item ul {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .exp-item li {
+            margin-bottom: 12px;
+        }
+
+        /* ---------- Projects (Hover Reveal) ---------- */
+        .proj-section h2 {
+            font-size: 42px;
+            margin: 0 0 48px;
+            letter-spacing: -0.02em;
+        }
+
+        .proj-accordion {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--line);
+        }
+
+        .proj-row {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .proj-row::before {
+            content: "";
+            position: absolute;
+            inset: 0 -24px;
+            background: #ffffff;
+            opacity: 0;
+            z-index: -1;
+            transition: all 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .proj-row h3 {
+            font-size: clamp(28px, 4vw, 48px);
+            margin: 0;
+            letter-spacing: -0.02em;
+            transition: transform 0.4s ease;
+            text-transform: uppercase;
+        }
+
+        .proj-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            color: var(--muted);
+            text-align: right;
+            transition: color 0.4s ease;
+        }
+
+        .proj-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .proj-details ul {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 70ch;
+        }
+
+        .proj-details li {
+            margin-bottom: 8px;
+        }
+
+        .proj-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--line);
+        }
+
+        .proj-tags {
+            display: flex;
+            gap: 12px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--signal);
+        }
+
+        .proj-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s ease;
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        .proj-title-link {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .proj-row:hover::before,
+        .proj-row.active::before {
+            opacity: 1;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.06);
+        }
+
+        .proj-row:hover h3,
+        .proj-row.active h3 {
+            transform: translateX(16px);
+            color: var(--signal);
+        }
+
+        .proj-row:hover .proj-details,
+        .proj-row.active .proj-details {
+            max-height: 400px;
+            opacity: 1;
+            margin-top: 32px;
+            padding-left: 16px;
+        }
+
+        /* ---------- Skills (Typographic Block) ---------- */
+        .skills-section h2 {
+            font-size: 42px;
+            margin: 0 0 48px;
+            letter-spacing: -0.02em;
+        }
+
+        .skills-block {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: clamp(18px, 3vw, 32px);
+            line-height: 1.8;
+            color: var(--text);
+            text-transform: uppercase;
+            text-align: justify;
+        }
+
+        .skills-block span {
+            color: var(--line);
+            margin: 0 8px;
+        }
+
+        .skills-block b {
+            color: var(--signal);
+            font-weight: 600;
+        }
+
+        .skills-block i {
+            font-style: normal;
+            color: var(--muted);
+        }
+
+        /* ---------- Massive Footer Contact ---------- */
+        .massive-contact {
+            text-align: center;
+            padding: 140px 0;
+            background: var(--text);
+            color: var(--ink);
+            border-top: none;
+        }
+
+        .massive-contact h2 {
+            font-size: 14px;
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--muted-2);
+            margin: 0 0 32px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .massive-email {
+            font-size: clamp(30px, 8vw, 120px);
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--ink);
+            display: block;
+            transition: color 0.3s ease, transform 0.3s ease;
+            letter-spacing: -0.03em;
+            margin-bottom: 64px;
+        }
+
+        .massive-email:hover {
+            color: var(--signal);
+            transform: translateY(-4px);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 32px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+        }
+
+        .social-links a {
+            color: var(--muted-2);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--ink);
+        }
+
+        @media (max-width: 760px) {
+            .navlinks {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--ink);
+                border-bottom: 1px solid var(--line);
+                flex-direction: column;
+                padding: 16px 28px;
+                gap: 16px;
+                display: none;
+            }
+
+            .navlinks.open {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 80px;
+                text-align: center;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .ascii-art {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-title {
+                writing-mode: horizontal-tb;
+                transform: none;
+                font-size: 48px;
+            }
+
+            .about-edu {
+                border-left: none;
+                border-top: 1px solid var(--line);
+                padding-left: 0;
+                padding-top: 24px;
+            }
+
+            .exp-container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .exp-sticky {
+                position: static;
+            }
+
+            .proj-row {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .proj-meta {
+                text-align: left;
+            }
+        }
+
+        /* ---------- Boot Sequence CSS ---------- */
+        .boot-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--ink);
+            color: var(--signal);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Mono', monospace;
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .boot-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.05);
+        }
+
+        .boot-content {
+            width: 100%;
+            max-width: 600px;
+            padding: 24px;
+        }
+
+        .boot-log {
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            min-height: 120px;
+            color: var(--muted);
+        }
+
+        .boot-log div {
+            margin-bottom: 4px;
+            opacity: 0.8;
+        }
+
+        .boot-status {
+            font-size: 14px;
+            font-weight: 600;
+            border-top: 1px solid var(--line);
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .boot-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background: var(--signal);
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        body.booting {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .hero-animate {
+            opacity: 0;
+            transform: translateY(60px) scale(0.97);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body.boot-complete .hero-animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        body.boot-complete .delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        body.boot-complete .delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        body.boot-complete .delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        body.boot-complete .delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+
+<body class="booting">
+    <div class="boot-overlay" id="bootOverlay">
+        <div class="boot-content">
+            <div class="boot-log" id="bootLog"></div>
+            <div class="boot-status" id="bootStatus">INITIALIZING...<span class="boot-cursor"></span></div>
+        </div>
+    </div>
+    <div class="grid-bg"></div>
+
+    <header>
+        <div class="wrap nav">
+            <a href="#top" class="brand"><span class="brand-mark"></span>Harsh Sinha</a>
+            <ul class="navlinks" id="navlinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">≡</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="top" class="wrap hero">
+            <div class="hero-left">
+                <p class="eyebrow hero-animate">backend &amp; agentic ai engineer</p>
+                <h1 class="hero-animate delay-1">I build systems that move data, money, and language reliably.</h1>
+                <p class="lead hero-animate delay-2">Builder who solves problems fast, using whatever stack the problem
+                    demands — RAG platforms, event-driven backends, and agentic AI workflows.</p>
+                <div class="hero-actions hero-animate delay-3">
+                    <a href="#projects" class="btn primary">View Work ↓</a>
+                    <a href="mailto:harshsinha969@gmail.com" class="btn">Email me</a>
+                </div>
+            </div>
+            <div class="hero-right hero-animate delay-4">
+                <div class="ascii-art">
+                    <span class="dim">// SYSTEM: ONLINE</span>
+                    <span class="dim">// LATENCY: 12ms</span>
+                    <span class="dim">// WORKERS: 8 ACTIVE</span>
+
+                    [01] █▄▄▄▄▄▄▄▄▄▄▄ <span class="highlight">98%</span>
+                    [02] █▄▄▄▄▄▄▄ <span class="highlight">64%</span>
+                    [03] █▄▄▄▄▄▄▄▄▄ <span class="highlight">82%</span>
+
+                    > _ready
+                </div>
+            </div>
+        </div>
+
+        <section id="about" class="animate-on-scroll">
+            <div class="wrap about-grid">
+                <h2 class="about-title">About</h2>
+
+                <div class="about-image-wrapper">
+                    <img src="profile.jpg" alt="Harsh Sinha" class="profile-pic" />
+                </div>
+
+                <div class="about-bio">
+                    <p>I'm a Computer Science undergraduate (AI/ML) at UPES Dehradun, currently splitting my time across
+                        three internships spanning speech AI, RAG systems, and ML data pipelines. I like designing the
+                        layer just underneath the product — the queues, auth, retrieval, and orchestration that make an
+                        AI feature actually production-ready.</p>
+                    <p>Recently represented UCS as an invitee delegate at the India AI Impact Summit (Bharat Mandapam),
+                        evaluating emerging technologies for enterprise adoption.</p>
+                </div>
+
+                <div class="about-edu">
+                    <div class="edu-block">
+                        <h4>B.Tech, Computer Science (AI/ML)</h4>
+                        <span>UPES, Dehradun // 2023–2027<br>CGPA 8.3</span>
+                    </div>
+                    <div class="edu-block">
+                        <h4>Class XII, CBSE</h4>
+                        <span>D.A.V Public School // 2022</span>
+                    </div>
+                    <div class="edu-block">
+                        <h4>Class X, CBSE</h4>
+                        <span>D.A.V Public School // 2020</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="animate-on-scroll">
+            <div class="wrap exp-container">
+                <div class="exp-sticky">
+                    <h2>Experience</h2>
+                    <p>Building intelligence layers and scalable data pipelines for enterprise and startup teams.</p>
+                </div>
+
+                <div class="exp-list">
+                    <div class="exp-item">
+                        <div class="exp-period">Jun 2026 — Present</div>
+                        <h3>Machine Learning Developer Intern</h3>
+                        <span class="company">KreativeTimebox Pvt Ltd</span>
+                        <ul>
+                            <li>Built backend services on Indic-Parler and Bark to power real-time Speech-to-Text and
+                                Text-to-Speech for conversational agents.</li>
+                            <li>Designed and shipped LLM-backed automation agents with structured tool-calling to run
+                                multi-step HR and operations workflows end to end.</li>
+                            <li>Worked directly with the AI team in a remote, fast-moving setup — short
+                                prototype-test-iterate cycles.</li>
+                        </ul>
+                    </div>
+
+                    <div class="exp-item">
+                        <div class="exp-period">Mar 2026 — Present</div>
+                        <h3>AI/ML Intern</h3>
+                        <span class="company">Labmentix Private Limited</span>
+                        <ul>
+                            <li>Engineered end-to-end ML data pipelines automating ingestion and preprocessing across
+                                model-development workflows.</li>
+                            <li>Ran EDA across large datasets to surface actionable insight and sharpen
+                                feature-engineering decisions.</li>
+                        </ul>
+                    </div>
+
+                    <div class="exp-item">
+                        <div class="exp-period">May 2025 — Jul 2025</div>
+                        <h3>ML &amp; Backend Engineer Intern</h3>
+                        <span class="company">UCS (Upvote Consulting Services)</span>
+                        <ul>
+                            <li>Built a RAG system with an optimized Milvus vector index, cutting retrieval time by 65%
+                                and lifting response relevance by 40%.</li>
+                            <li>Built REST APIs secured with JWT, OAuth2, and rate limiting from scratch for enterprise
+                                AI services ahead of client rollout.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="animate-on-scroll proj-section">
+            <div class="wrap">
+                <h2>Projects</h2>
+                <div class="proj-accordion">
+
+                    <div class="proj-row">
+                        <div class="proj-title-wrapper">
+                            <h3>Bank-Sahayak</h3>
+                            <a href="https://github.com/HarshSinha-1/ConversaAI_UI" target="_blank" rel="noopener"
+                                class="github-pill">GitHub</a>
+                        </div>
+                        <div class="proj-meta">Secure, event-driven banking orchestration</div>
+                        <div class="proj-details">
+                            <ul>
+                                <li>Architected a self-hosted, event-driven platform with independently deployable STT,
+                                    TTS, LLM, and orchestration microservices, using queued request processing and
+                                    declarative tool routing for financial operations.</li>
+                                <li>Built a risk-aware execution layer — rate limiting, failure detection, masked audit
+                                    logging, and read/write tool classification — that requires secondary confirmation
+                                    before any irreversible financial action executes.</li>
+                            </ul>
+                            <div class="proj-bottom">
+                                <div class="proj-tags">#EVENT-DRIVEN #MICROSERVICES #JOB-QUEUES</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-row">
+                        <div class="proj-title-wrapper">
+                            <h3>EduBhasha</h3>
+                            <a href="https://github.com/HarshSinha-1/UCS-RAGBOT" target="_blank" rel="noopener"
+                                class="github-pill">GitHub</a>
+                        </div>
+                        <div class="proj-meta">Multilingual educational knowledge platform</div>
+                        <div class="proj-details">
+                            <ul>
+                                <li>Architected a multilingual RAG platform across FastAPI, Express.js, PostgreSQL, and
+                                    Milvus, deciding how retrieval, auth, and data layers split across services.</li>
+                                <li>Engineered asynchronous query processing with job queues, rate limiting, and
+                                    JWT/OAuth-based auth for reliable handling of concurrent student requests.</li>
+                            </ul>
+                            <div class="proj-bottom">
+                                <div class="proj-tags">#RAG #FASTAPI #MILVUS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-row">
+                        <div class="proj-title-wrapper">
+                            <h3>Fitfusion.ai</h3>
+                            <a href="https://github.com/HarshSinha-1/Fitfusion.ai" target="_blank" rel="noopener"
+                                class="github-pill">GitHub</a>
+                        </div>
+                        <div class="proj-meta">Context-aware fitness & nutrition</div>
+                        <div class="proj-details">
+                            <ul>
+                                <li>Architected a layered Node.js/Express/PostgreSQL backend that plans meals and
+                                    workouts around live mood, stress, and environmental data.</li>
+                                <li>Shipped a three-step registration flow with JWT-protected endpoints, Zod validation,
+                                    and JSONB-backed flexible nutrition logs.</li>
+                            </ul>
+                            <div class="proj-bottom">
+                                <div class="proj-tags">#NODE.JS #POSTGRESQL #ZOD</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-row">
+                        <div class="proj-title-wrapper">
+                            <h3>FedBioXAI</h3>
+                            <a href="https://github.com/HarshSinha-1/Fed-BioXAI-A-Federated-Learning-Framework-for-Explainable-Multi-modal-Bio-electric-Assessment"
+                                target="_blank" rel="noopener" class="github-pill">GitHub</a>
+                        </div>
+                        <div class="proj-meta">Explainable biosignal anomaly detection</div>
+                        <div class="proj-details">
+                            <ul>
+                                <li>Designed the federated system topology and a LOSO cross-validation strategy across
+                                    EEG/ECG/EOG so no raw patient data is ever centralized.</li>
+                                <li>Integrated explainable AI modules for interpretable feature attribution on
+                                    biosignals.</li>
+                            </ul>
+                            <div class="proj-bottom">
+                                <div class="proj-tags">#FEDERATED-LEARNING #XAI</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="animate-on-scroll skills-section">
+            <div class="wrap">
+                <h2>Competencies</h2>
+                <div class="skills-block">
+                    <b>JAVA</b> <span>//</span> PYTHON <span>//</span> <i>TYPESCRIPT</i> <span>//</span> C
+                    <span>//</span> SQL <span>//</span> <b>NODE.JS</b> <span>//</span> EXPRESS <span>//</span> FASTAPI
+                    <span>//</span> <b>MICROSERVICES</b> <span>//</span> REDIS <span>//</span> KAFKA <span>//</span>
+                    <b>MILVUS</b> <span>//</span> <i>EVENT-DRIVEN ARCHITECTURE</i> <span>//</span> <b>AGENTIC
+                        WORKFLOWS</b> <span>//</span> HUGGING FACE <span>//</span> GCP <span>//</span> DOCKER
+                    <span>//</span> POSTGRESQL <span>//</span> MONGODB
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="massive-contact animate-on-scroll">
+            <div class="wrap">
+                <h2>Open to Opportunities</h2>
+                <a href="mailto:harshsinha969@gmail.com" class="massive-email">harshsinha969<br>@gmail.com</a>
+                <div class="social-links">
+                    <a href="https://github.com/HarshSinha-1" target="_blank" rel="noopener">GITHUB</a>
+                    <a href="https://linkedin.com/in/harsh-sinha-a882812b5/" target="_blank" rel="noopener">LINKEDIN</a>
+                    <a href="tel:+919142212864">CALL (+91 91422 12864)</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const toggle = document.getElementById('navToggle');
+        const links = document.getElementById('navlinks');
+        toggle.addEventListener('click', () => links.classList.toggle('open'));
+        links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+        // Scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // Mobile Project Accordion
+        document.querySelectorAll('.proj-row').forEach(row => {
+            row.addEventListener('click', (e) => {
+                // If the user clicked the link, let it navigate, don't toggle
+                if (e.target.closest('a')) return;
+
+                // Toggle this row
+                row.classList.toggle('active');
+
+                // Close other rows
+                document.querySelectorAll('.proj-row').forEach(otherRow => {
+                    if (otherRow !== row) otherRow.classList.remove('active');
+                });
+            });
+        });
+
+        // Boot Sequence
+        const bootLines = [
+            "> INITIALIZING SYSTEM KERNEL...",
+            "> LOADING MODULES [████████░░] 80%",
+            "> ESTABLISHING SECURE CONNECTION...",
+            "> FETCHING LATEST METRICS...",
+            "> COMPILING ASSETS...",
+            "> SYSTEM READY. LAUNCHING WORKSPACE."
+        ];
+
+        const logEl = document.getElementById('bootLog');
+        const overlay = document.getElementById('bootOverlay');
+        const statusEl = document.getElementById('bootStatus');
+
+        let bootDelay = 150;
+
+        async function runBoot() {
+            for (let i = 0; i < bootLines.length; i++) {
+                await new Promise(r => setTimeout(r, bootDelay));
+                const line = document.createElement('div');
+                line.textContent = bootLines[i];
+                logEl.appendChild(line);
+
+                // Randomize delay for realism
+                bootDelay = Math.random() * 200 + 50;
+            }
+
+            await new Promise(r => setTimeout(r, 400));
+            statusEl.innerHTML = '<span>STATUS: ONLINE</span><span class="boot-cursor"></span>';
+
+            await new Promise(r => setTimeout(r, 600));
+            overlay.classList.add('hidden');
+            document.body.classList.remove('booting');
+            document.body.classList.add('boot-complete');
+
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 800);
+        }
+
+        // Start boot sequence
+        window.addEventListener('load', runBoot);
+    </script>
+</body>
+
+</html>
